@@ -45,7 +45,6 @@ To use this filter you just add it to an application config file:
     ],
     'as adaptiveFilter' => [
         'class' => 'vxm\mobileFirst\AdaptiveFilter',
-        'enabled' => YII_ENV_PROD,
         'redirectUrl' => ['https://m.yoursite.com', 'getParam1' => '1']
     ]
 ]
@@ -64,7 +63,6 @@ when redirect user to mobile site: `m.yoursite.com/product?sort=price` you just 
     ],
     'as adaptiveFilter' => [
         'class' => 'vxm\mobileFirst\AdaptiveFilter',
-        'enabled' => YII_ENV_PROD,
         'redirectUrl' => ['https://m.yoursite.com', 'getParam1' => '1'],
         'keepUrlPath' => true
     ]
@@ -89,7 +87,7 @@ To use it, you need to attach it to the view application component in configure 
     'components' => [
         'view' => [
             'as mobileFirst' => [
-                'class' => ViewRenderBehavior::class,
+                'class' => 'vxm\mobileFirst\ViewRenderBehavior',
                 'dirMap' => [
                     'mobile' => 'mobile',
                     'tablet' => 'tablet'
@@ -114,7 +112,7 @@ Of course you can change the value or add more cases:
     'components' => [
         'view' => [
             'as mobileFirst' => [
-                'class' => ViewRenderBehavior::class,
+                'class' => 'vxm\mobileFirst\ViewRenderBehavior',
                 'dirMap' => [
                     'mobile' => 'mobile-tablet',
                     'tablet' => 'mobile-tablet',
