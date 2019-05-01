@@ -11,7 +11,7 @@ use yii\base\ViewRenderer as BaseViewRenderer;
 use yii\di\Instance;
 
 /**
- * Class DeviceThemeRenderer
+ * The renderer support rendering view in sub dir of it.
  *
  * @author Vuong Minh <vuongxuongminh@gmail.com>
  * @since 1.0.0
