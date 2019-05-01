@@ -75,7 +75,8 @@ class TestCase extends BaseTestCase
                 ]
             ],
             'as mobileFirst' => [
-                'class' => AdaptiveFilter::class
+                'class' => AdaptiveFilter::class,
+                'redirectUrl' => 'https://abc.com'
             ]
         ], $config));
     }

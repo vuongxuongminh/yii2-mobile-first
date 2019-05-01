@@ -25,13 +25,6 @@ class AdaptiveFilter extends ActionFilter
     use DetectorTrait;
 
     /**
-     * @var boolean|callable whether the filter is enabled or not.
-     * You may use this field for quick disabling of the filter, based on debug mode or environment.
-     * This value can be a callable, which returns actual boolean result for the check.
-     */
-    public $enabled = true;
-
-    /**
      * @var array list of request methods, which should allow page redirection in case wrong protocol is used.
      * For all not listed request methods `BadRequestHttpException` will be thrown for secure action, while
      * not secure ones will be allowed to be performed via secured protocol.
@@ -132,18 +125,12 @@ class AdaptiveFilter extends ActionFilter
      */
     protected function shouldRedirect(): bool
     {
-        if (is_callable($this->enabled)) {
-
-            $enabled = call_user_func($this->enabled, $this);
-        } else {
-
-            $enabled = (bool)$this->enabled;
-        }
-
         $isMobile = $this->getDetector()->isMobile();
         $isRedirectRequestMethod = in_array($this->request->getMethod(), $this->redirectRequestMethods, true);
+        $hostName = $this->request->getHostName();
+        $redirectHostName = parse_url($this->getRedirectUrl(), PHP_URL_HOST);
 
-        return $enabled && $isMobile && $isRedirectRequestMethod;
+        return strcasecmp($hostName, $redirectHostName) !== 0 && $isMobile && $isRedirectRequestMethod;
     }
 
 

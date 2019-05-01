@@ -53,7 +53,7 @@ class ViewRenderTest extends TestCase
     {
         parent::mockApplication($config, $appClass);
 
-        Yii::$app->getBehavior('mobileFirst')->enabled = false;
+        Yii::$app->getBehavior('mobileFirst')->detach();
     }
 
 }
