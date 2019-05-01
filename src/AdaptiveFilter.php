@@ -109,7 +109,7 @@ class AdaptiveFilter extends ActionFilter
 
         if ($this->keepUrlPath) {
 
-            $url = rtrim($url, '/') . '/' . $this->request->getUrl();
+            $url = rtrim($url, '/') . '/' . ltrim($this->request->getUrl());
         }
 
         $params = http_build_query($params, '', '&');
