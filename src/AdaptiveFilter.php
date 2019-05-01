@@ -112,9 +112,15 @@ class AdaptiveFilter extends ActionFilter
             $url = rtrim($url, '/') . '/' . $this->request->getUrl();
         }
 
-        $params = http_build_query(array_merge($params, $this->request->get()), '', '&');
+        $params = http_build_query($params, '', '&');
 
-        return $url . '&' . $params;
+        if (strpos($url, '?') !== false) {
+            $paramSeparator = '&';
+        } else {
+            $paramSeparator = '?';
+        }
+
+        return $url . $paramSeparator . $params;
     }
 
     /**
